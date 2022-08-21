@@ -1,4 +1,4 @@
-__title__ = "太陽シミュレータ Ver.1.0"
+__title__ = "VRMNX太陽シミュレータ Ver.1.0"
 __author__ = "Caldia (原作：C-PON)"
 __update__  = "2022/06/01"
 
@@ -47,14 +47,14 @@ def init(obj):
     di['N_LAT'] =  34.701888  # 北緯(0- 90,マイナスで南緯)
     di['E_LON'] = 135.4949722 # 東経(0-180,マイナスで西経)
     di['UTC'] = 9  # タイムゾーン(-12 - +14)
-    di['mon'] = 6  # 月(1-12)
-    di['day'] = 20 # 日(1-31)
+    di['mon'] = 4  # 月(1-12)
+    di['day'] = 1  # 日(1-31)
     di['hor'] = 12 # 時(0-23)
     di['min'] = 0  # 分(0-59)
     di['sec'] = 0  # 秒(0-59)
     di['season'] = 0 # 季節
     di['lon'] = 0   # 経度
-    di['lat'] = 50  # 緯度
+    di['lat'] = 0   # 緯度
     di['iro'] = 0
     di['now'] = vrmapi.LAYOUT().SYSTEM().GetRealTime()
     di['move'] = True

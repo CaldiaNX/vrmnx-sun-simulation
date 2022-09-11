@@ -1,6 +1,6 @@
-__title__ = "VRMNX太陽シミュレータ Ver.1.0"
+__title__ = "VRMNX太陽シミュレータ Ver.1.0a"
 __author__ = "Caldia (原作：C-PON)"
-__update__  = "2022/06/01"
+__update__  = "2022/09/11"
 
 import vrmapi
 import math
@@ -26,7 +26,8 @@ def vrmevent(obj,ev,param):
     elif ev == 'frame':
         if _drawEnable:
             # ImGui描画
-            di = obj.GetDict()
+            layDic = obj.GetDict()
+            di = layDic['sunsim']
             drawFrame(di)
             tokei(di)
             keisan(di)
@@ -40,7 +41,7 @@ def vrmevent(obj,ev,param):
 
 def init(obj):
     # Dict定義
-    di = obj.GetDict()
+    di = {}
     di['RS_DAY']=1 # (昼)天球リソース番号
     di['RS_EVE']=2 # (夕)天球リソース番号
     di['RS_NIG']=3 # (夜)天球リソース番号
@@ -61,6 +62,9 @@ def init(obj):
     di['SPD'] = 120 # 加速度(1で現実速度)
     # 太陽と天球のアニメーション速度(秒) 現実速度1なら10分で動作
     di['ANIME'] = 1200 / di['SPD']
+    # レイアウトオブジェクトに代入
+    layDic = obj.GetDict()
+    layDic['sunsim'] = di
     # 季節計算
     seasonCalc(di)
 
@@ -134,7 +138,6 @@ def seasonCalc(di):
 
 # ウィンドウ描画
 def drawFrame(di):
-    global __title__
     # ImGui定義
     g = vrmapi.ImGui()
     g.Begin("sunsim" ,__title__)
